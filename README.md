@@ -1,8 +1,13 @@
 ## Introduction
 
+![Screenshot_Introduction_Result](pics/Screenshot_A6213[1]_(2024-July-27)_[08,13,19]__.jpg)
+
 This guide walks you through creating multiple independent audio outputs on your laptop. This means you can have separate sinks for your headphones, internal speakers, and even an external monitor connected via HDMI/USB-C adapter, just like on Windows.
 
+
+![Screenshot_Introduction_Result2](pics/Screenshot_A6213[1]_(2024-July-27)_[06,38,21]__.jpg)
 In short, you'll gain control over three audio outputs: headphones, speakers, and HDMI.
+
 
 # How does this work?
 This approach combines two resources:
