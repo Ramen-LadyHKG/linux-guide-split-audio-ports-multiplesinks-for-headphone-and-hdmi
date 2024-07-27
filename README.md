@@ -12,6 +12,7 @@ In short, you'll gain control over three audio outputs: headphones, speakers, an
 # How does this work?
 This approach combines two resources:
 > **Forked Guide**: https://github.com/luisbocanegra/linux-guide-split-audio-ports WirePlumber
+> 
 > **Multi-Sink Guide on Archwiki**: https://wiki.archlinux.org/title/WirePlumber#Simultaneous_output_to_multiple_sinks_on_the_same_sound_card
 
 **Important Note:**
@@ -32,7 +33,7 @@ This solution is specifically tested for the **Intel Sound card** and **WirePlum
 
 # How to do it? (Quick Guide)
 1. **Follow the Original Guide**: You followed the original guide (linked above or listed below) to separate headphone and internal speaker outputs.
-2. **Download Files**: Download the modified 51-alsa-custom.conf and split-ports-profile.conf files from this repository.
+2. **Download Files**: Download the modified `51-alsa-custom.conf` and `split-ports-profile.conf` files from this repository.
 3. **Place Files**: Move the downloaded files to the following locations:
 > `/etc/alsa-card-profile/mixer/profile-sets/split-ports-profile.conf`
 
