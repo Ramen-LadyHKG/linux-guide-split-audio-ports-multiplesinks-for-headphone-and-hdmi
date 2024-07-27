@@ -25,7 +25,7 @@ I apologize for leaving the polishing to you, but feel free to adapt this approa
 This solution is specifically tested for the **Intel Sound card** and **WirePlumber**+**Pipewire** environment, commonly used in modern desktop environments and major Linux distributions like Fedora. Using this environment or modifying it for others is recommended.
 
 ---
-# !!! Sorry! Paragraphs below have not properly mergated yet!!!
+# !!! Sorry! Paragraphs below have not properly migrated yet!!!
 ---
 
 # How to do it? (Quick Guide)
@@ -95,7 +95,7 @@ direction = output
 https://github.com/luisbocanegra/linux-guide-split-audio-ports/fork
 
 ---
-# !!! Sorry! Paragraphs below have not properly mergated yet!!!
+# !!! Sorry! Paragraphs below have not properly merged yet!!!
 #
 #
 #
