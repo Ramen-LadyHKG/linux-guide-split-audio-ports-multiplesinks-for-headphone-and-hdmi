@@ -1,3 +1,99 @@
+## Introduction
+
+This guide will help you create multiple audio sinks for laptop in most cases. With this approach, you can have headphone and internal speaker sinks seperated like how you get on Windows. In addition, External Monitor connected by HDMI/USBC adaptor will be seperated as an independent device as well.
+
+
+In short, you'll have 3 audio output devices to choice, headphone, speaker, HDMI.
+
+# How does this work?
+This approach combines [the forked guide](https://github.com/luisbocanegra/linux-guide-split-audio-ports) and [the Wireplumber guide for multple sinks on Archwiki](https://wiki.archlinux.org/title/WirePlumber#Simultaneous_output_to_multiple_sinks_on_the_same_sound_card).
+
+**YOU SHOULD KNOW**
+
+I was too lazy to polish the source code. I take that as a [quick fix to the wireplumber v0.5 changes which removed the lua configuration support](https://pipewire.pages.freedesktop.org/wireplumber/daemon/configuration/migration.html).
+
+I'm leaving that task for you, sorry :(
+
+This solution has only tested on Wireplumber+Pipewire environment, it's commonly used in modern Desktop Environment or Major Linux distribution like Fedora. It's recommend to use that or modify this approach youself.
+
+---
+# !!! Sorry! Paragraphs below have not properly mergated yet!!!
+#
+#
+#
+---
+
+# How to do it? (Quick)
+1. You followed the original guide to seperate the headphone and internal speaker sinks.
+2. Download the modified`51-alsa-custom.conf` and `split-ports-profile.conf` from this repository and place it under
+> `/etc/alsa-card-profile/mixer/profile-sets/split-ports-profile.conf`
+
+> `/etc/wireplumber/wireplumber.conf.d/51-alsa-custom.conf`
+3. Restart any running pipewire services (may need to stop it multiple times if it gets restarted):
+
+    ```sh
+    systemctl --user restart pipewire.service pipewire.socket pipewire-pulse.service pipewire-pulse.socket wireplumber.service
+    ```
+
+## Manual steps
+
+2. Once you're done, add this file `/etc/wireplumber/wireplumber.conf.d/51-alsa-custom.conf`
+(or `~/.config/wireplumber/wireplumber.conf.d/51-alsa-custom.conf`) and the following content
+```
+monitor.alsa.rules = [
+  {
+    matches = [
+      {
+        device.nick = "HDA Intel PCH"
+      }
+    ]
+    actions = {
+      update-props = {
+        api.alsa.use-acp = true,
+        api.acp.auto-profile = false
+        api.acp.auto-port = false
+        device.profile-set = "/etc/alsa-card-profile/mixer/profile-sets/split-ports-profile.conf"
+        device.profile = "output:analog-stereo-headphones+output:analog-stereo-speaker+input:analog-stereo-input"
+      }
+    }
+  }
+]
+```
+3. edit `/etc/alsa-card-profile/mixer/profile-sets/split-ports-profile.conf` and add these to create mapping for HDMI(external monitor)
+```
+; This is the mapping for VGA/HDMI (External Monitor)
+[Mapping hdmi-stereo]
+description = External Monitor (VGA/HDMI)
+device-strings = hdmi:%f
+paths-output = hdmi-output-0
+channel-map = left,right
+priority = 9
+direction = output
+```
+5. add the output-mappings `hdmi-stereo` in the profile section, like this
+> Original: `output-mappings = analog-stereo-headphones analog-stereo-speaker`
+
+> After: `output-mappings = analog-stereo-headphones analog-stereo-speaker hdmi-stereo`
+6. Restart any running pipewire services (may need to stop it multiple times if it gets restarted):
+
+    ```sh
+    systemctl --user restart pipewire.service pipewire.socket pipewire-pulse.service pipewire-pulse.socket wireplumber.service
+    ```
+
+
+
+
+
+
+
+# Original guide forked from (luisbocanegra/linux-guide-split-audio-ports)
+https://github.com/luisbocanegra/linux-guide-split-audio-ports/fork
+
+
+
+
+
+
 # Splitting audio ports in Linux for simultaneous playback
 
 ![Plasma audio volume widget showing split ports](pics/linux-full-multistreaming-plasma-panel.png)
