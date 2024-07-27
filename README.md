@@ -26,9 +26,6 @@ This solution is specifically tested for the **Intel Sound card** and **WirePlum
 
 ---
 # !!! Sorry! Paragraphs below have not properly mergated yet!!!
-#
-#
-#
 ---
 
 # How to do it? (Quick Guide)
