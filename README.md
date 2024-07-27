@@ -96,10 +96,14 @@ direction = output
 # Original guide forked from (luisbocanegra/linux-guide-split-audio-ports)
 https://github.com/luisbocanegra/linux-guide-split-audio-ports/fork
 
-
-
-
-
+---
+# !!! Sorry! Paragraphs below have not properly mergated yet!!!
+#
+#
+#
+#
+#
+---
 
 # Splitting audio ports in Linux for simultaneous playback
 
